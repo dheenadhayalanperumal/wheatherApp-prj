@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Autocomplete</title>
+    <!-- Add the Google Places API script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAILGVlt-SOiL381JT3TQ9dxxoNIUuxrV&libraries=places"></script>
+</head>
+<body>
+
+<!-- Your HTML content -->
+<div>
+    <label for="cityInput">City:</label>
+    <input id="cityInput" type="text" placeholder="Enter city name">
+</div>
+
+<!-- Your other content -->
+
+<!-- Add JavaScript to enable autocomplete -->
+<script>
+    // Initialize the Places Autocomplete
+    function initializeAutocomplete() {
+        var input = document.getElementById('cityInput');
+        if (input) {
+            var options = {
+                types: ['(cities)'] // Restrict to cities only
+            };
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+        } else {
+            console.error("Input field not found.");
+        }
+    }
+
+    // Load the Places Autocomplete after the page is loaded
+    document.addEventListener('DOMContentLoaded', initializeAutocomplete);
+</script>
+
+</body>
+</html>

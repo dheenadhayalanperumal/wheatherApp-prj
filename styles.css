@@ -1,6 +1,7 @@
 
     .Search {
         display: flex;
+        color: #00CAFD;
         justify-content: space-between;
         flex-wrap: wrap;
         margin:10px 20px 25px 25px;
@@ -25,7 +26,7 @@
         height: 59px;
         display: flex;
         justify-content: space-between;
-        border: 2px black solid;
+        border: 2px #00CAFD solid;
         border-radius: 5px;
         
 
@@ -53,6 +54,7 @@
         width:20%;
         display: flex;
         flex-direction: column;
+        gap:30;
         background: linear-gradient(180deg, #00CAFD 0%, #0075BB 100%);
         margin: -10px 10px -10px -10px; 
        
@@ -79,7 +81,7 @@
             gap: 15px;
             width: auto;
             margin:0px 20px 0px 25px;
-            height:352px; /* Adjust the gap between boxes as needed */
+            height:380px; /* Adjust the gap between boxes as needed */
         }
 
         .box {
@@ -123,7 +125,7 @@
            margin: 40px 25px 0px 25px;
            padding:14px 16px 14px 16px ;
            background: linear-gradient(180deg, #00CAFD 0%, #0070B7 100%);
-           justify-content: center;
+           /* justify-content: center; */
           
 
            
@@ -140,3 +142,97 @@
             background: #FFF;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         }
+
+        .Wbox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap:15px;
+            flex-wrap: wrap;
+            color: #FFF;
+        }
+
+        .wbox2{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:10px;
+            flex-wrap: wrap;  
+            color: #FFF;
+        }
+
+        .Wbox h2{
+            margin: 5px;
+            color: #FFF;
+            font-family: Poppins;
+            font-size: 35px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        .P-Box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:5px;
+            flex-wrap: nowrap;
+            color: #FFF;
+        }
+        .P-Box h2{
+        margin: 5px;
+        }
+        .HourBox{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:5px;
+            flex-wrap: nowrap;
+            color: #FFF;
+
+        }
+        .DayBox{
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:5px;
+            flex-wrap: wrap;
+            color: #008CCD;
+        }
+        .DayBox p{
+            margin: 3px;
+        }
+        .dashSide{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            color:#FFF
+        }
+        .Drop{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .Drop h2{
+            margin: 2px;
+        }
+        .P-Box h3 {
+            margin: 5px;
+        }
+        .selectBar{
+            border: 2px #00CAFD solid ;
+            border-radius: 5px;
+            color:#00CAFD;
+        }
+       
+        input[type="search" i]:focus {
+        border-color:red !important;
+        
+       
+        }
+      

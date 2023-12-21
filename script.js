@@ -1,0 +1,312 @@
+
+var WeatherData = null;
+async function getCoordinates() {
+    var selectedOption = document.getElementById("Location").value;
+    if (selectedOption === "CurrentLocation") {
+        // Code to get current location coordinates
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async function (position) {
+                // var currentLat = position.coords.latitude;
+                // var currentLng = position.coords.longitude;
+                const { latitude, longitude } = position.coords;
+
+                // Save the coordinates to localStorage
+                saveCoordinatesToLocalStorage(latitude, longitude);
+
+                alert("Current Location - Latitude: " + latitude + ", Longitude: " + longitude);
+                getCityName(latitude, longitude);
+                WeatherData = await getWeatherData(latitude, longitude);
+                console.log(WeatherData);
+                test();
+
+
+            }, function (error) {
+                alert("Error getting current location: " + error.message);
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    } else {
+              
+        // Code to get coordinates for the selected city
+        // Retrieve the saved coordinates from local storage
+        const savedLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+        const selectedLocation = savedLocations.find(location => location.cityName === selectedOption);
+
+        if (selectedLocation) {
+            const { latitude, longitude } = selectedLocation;
+            alert("Selected Location - Latitude: " + latitude + ", Longitude: " + longitude);
+
+            // Call functions to get city name and weather data using the saved coordinates
+            getCityName(latitude, longitude);
+            WeatherData = await getWeatherData(latitude, longitude);
+            console.log(WeatherData);
+            test();
+        } else {
+            alert("Coordinates for " + selectedOption + " not found.");
+        }
+        
+    }
+}
+
+
+// Function to save coordinates to localStorage
+function saveCoordinatesToLocalStorage(latitude, longitude) {
+    localStorage.setItem('lastLocationLatitude', latitude);
+    localStorage.setItem('lastLocationLongitude', longitude);
+}
+
+// Function to retrieve coordinates from localStorage
+function getLastLocationFromLocalStorage() {
+    const latitude = localStorage.getItem('lastLocationLatitude');
+    const longitude = localStorage.getItem('lastLocationLongitude');
+    return { latitude, longitude };
+}
+
+// Attach event listener to the dropdown
+document.getElementById("Location").addEventListener("change", getCoordinates);
+
+
+async function getWeatherData(latitude, longitude) {
+    const apiKey = "YDKLNUJLBQLPSZXWKD3MT5XQS";
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?key=${apiKey}`);
+    const data = await response.json();
+    return data;
+}
+
+async function getCityName(lat, lon) {
+    try {
+        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3fb4ad9b362949b5a0cf0f155432a6cc`);
+        const data = await response.json();
+        // console.log(data);
+
+        if (data.results.length > 0) {
+            // const city = data.results[0].components.city;
+            const city = data.results[0].components.city ? data.results[0].components.city : data.results[0].components.suburb;
+
+            console.log("Current Location - Latitude: " + lat + ", Longitude: " + lon + ", City: " + city);
+        } else {
+            alert("City name not available.");
+        }
+    } catch (error) {
+        console.error("Error getting city name:", error);
+    }
+}
+function test() {
+    console.log("hello");
+    displayTemperature(WeatherData.currentConditions.temp);
+    displayPressure(WeatherData.currentConditions.pressure);
+    displaywind(WeatherData.currentConditions.windspeed);
+    displayhumidity(WeatherData.currentConditions.humidity);
+    displayUV(WeatherData.currentConditions.uvindex);
+
+    // Display time and temperature for each hour
+    for (let i = 0; i < 5; i++) {
+        displayTime(`Hours${i + 1}`, i);
+        displayHourTemp(`HoursTemp${i + 1}`, i);
+    }
+
+    // Display day and temperature for each day
+    for (let i = 0; i < 6; i++) {
+        displayDayTemp(`DayTemp${i + 1}`, i);
+    }
+}
+
+   
+
+
+
+
+
+function displayTemperature(temperature) {
+    document.getElementById('tempinner').innerHTML =
+        `<h2 id="tempText">${temperature}&deg;F</h2>
+     <p>FEEL LIKE</p>
+     <p id="feellike"> ${WeatherData.currentConditions.feelslike}&deg;F</p>`;
+}
+
+function displayPressure(pressure) {
+    document.getElementById('pressureinner').innerText = pressure;
+    //    console.log(pressure);
+}
+function displaywind(wind) {
+    document.getElementById('windinner').innerText = wind;
+    //    console.log(wind);
+}
+function displayhumidity(humidity) {
+    document.getElementById('humidityinner').innerText = humidity;
+    //    console.log(humidity);
+}
+function displayUV(UV) {
+    document.getElementById('UVinner').innerText = UV;
+    //    console.log(UV);
+}
+
+function displayTime(id, hoursToAdd) {
+    var now = new Date();
+    var targetElement = document.getElementById(id);
+    var newHours = (now.getHours() + hoursToAdd) % 24; // Ensure the result is within the range 0-23
+
+    // Add leading zero if needed
+    newHours = (newHours < 10) ? "0" + newHours : newHours;
+
+    targetElement.innerText = newHours;
+}
+
+function displayHourTemp(id, hoursToAdd) {
+    var now = new Date();
+    var targetElement = document.getElementById(id);
+    var newHours = (now.getHours() + hoursToAdd) % 24; // Ensure the result is within the range 0-23
+
+    // Add leading zero if needed
+    // newHours = (newHours < 10) ? "0" + newHours : newHours;
+
+    targetElement.innerText = WeatherData.days[0].hours[newHours].temp;
+
+}
+
+
+function displayDayTemp(targetId, daysToAdd) {
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var now = new Date();
+    now.setDate(now.getDate() + daysToAdd);
+    var targetElement = document.getElementById(targetId);
+
+    // Get the day, date, and month
+    var todayMonth = months[now.getMonth()];
+    var todayDate = now.getDate();
+    var todayDay = daysOfWeek[now.getDay()];
+
+    // Display the day, date, and month along with an image and temperature
+    targetElement.innerHTML = `
+        <div>
+            <p>${todayDay}</p>
+        </div>
+        <div>
+            <p>${todayMonth}, ${todayDate}</p>
+        </div>
+        <div><img src="/image/image6.svg"></div>
+        <div>
+            <p>${WeatherData.days[daysToAdd].temp}&deg;F</p>
+        </div>`;
+
+}
+
+
+const saveButton = document.getElementById("saveLocation");
+
+saveButton.addEventListener("click", function () {
+    // Get current location coordinates
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async function (position) {
+            const { latitude, longitude } = position.coords;
+
+            // Prompt for the city name
+            const cityName = prompt("Enter the city name:");
+
+            if (cityName) {
+                // Retrieve existing locations from local storage or initialize an empty array
+                const existingLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+
+                // Add the new location to the array
+                const newLocation = { cityName, latitude, longitude };
+                existingLocations.push(newLocation);
+
+                // Save the updated array to local storage
+                localStorage.setItem('savedLocations', JSON.stringify(existingLocations));
+
+                console.log("Location saved successfully.");
+            } else {
+                console.log("City name cannot be empty.");
+            }
+        }, function (error) {
+            alert("Error getting current location: " + error.message);
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const lastLocation = getLastLocationFromLocalStorage();
+
+    if (lastLocation.latitude && lastLocation.longitude) {
+        // Use the last location
+        console.log("Using last location:", lastLocation.latitude, lastLocation.longitude);
+        (async () => {
+            // alert("Current Location - Latitude: " + lastLocation.latitude + ", Longitude: " + lastLocation.longitude);
+            getCityName(lastLocation.latitude, lastLocation.longitude);
+            WeatherData = await getWeatherData(lastLocation.latitude, lastLocation.longitude);
+            console.log(WeatherData);
+            test();
+        })();
+        // Add your logic to fetch weather data and display it using the last location
+    } else {
+        console.log("No last location found");
+    }
+    displaySavedLocations();
+});
+
+
+function displaySavedLocations() {
+    const savedLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+
+    const selectElement = document.getElementById("Location");
+    // Clear existing options
+    selectElement.innerHTML = '<option value="selectlocation">Select Location</option>  <option value="CurrentLocation">Current Location</option> ';
+
+    // Add saved locations as options
+    savedLocations.forEach(location => {
+        const option = document.createElement('option');
+        option.value = location.cityName;
+        option.textContent = location.cityName;
+        selectElement.appendChild(option);
+    });
+}
+
+
+// async function getWeatherData(city) {
+//     const apiKey = "YDKLNUJLBQLPSZXWKD3MT5XQS";
+//     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${apiKey}`);
+//     const data = await response.json();
+//     return data;
+// }
+const searchForm = document.getElementById("formAction");
+searchForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const cityNameInput = document.getElementById("searchdata");
+    const cityName = cityNameInput.value;
+
+    if (cityName) {
+        getWeatherDataByCityName(cityName);
+    } else {
+        alert("City name cannot be empty.");
+    }
+});
+
+async function getWeatherDataByCityName(cityName) {
+    const key = '3fb4ad9b362949b5a0cf0f155432a6cc';
+    try {
+        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${key}`);
+        const data = await response.json();
+
+        if (data.results.length > 0) {
+            const { lat, lng } = data.results[0].geometry;
+
+            // Save the coordinates to localStorage
+            saveCoordinatesToLocalStorage(lat, lng);
+
+            alert("Location found - Latitude: " + lat + ", Longitude: " + lng);
+            getCityName(lat, lng);
+            WeatherData = await getWeatherData(lat, lng);
+            console.log(WeatherData);
+            test();
+        } else {
+            alert("City name not found.");
+        }
+    } catch (error) {
+        console.error("Error getting weather data by city name:", error);
+    }
+}

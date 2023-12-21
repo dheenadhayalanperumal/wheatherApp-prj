@@ -1,112 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Start typing "link" and select the suggestion to import your CSS file -->
-<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 
-    
+
 </head>
 
 <body>
-<section class="fullview">
-    <section class="sideBar">
-    <section class="marginDash">
-       <div>
-        <img scr=""
-        <p>Dashboard</p>
-       </div>
-       <div>
-        <p>Dashboard</p>
-       </div>
-       <div>
-        <p>Dashboard</p>
-       </div>
-       <div>
-        <p>Dashboard</p>
-       </div>
+    <section class="fullview">
+        <section class="sideBar">
+            <section class="marginDash">
+                <div class="dashSide">
+                    <img src="/image/Dash1.svg">
+                    <h3>Dashboard</h3>
+                </div>
 
-        
-    </section>   
-    </section>
+                <div class="dashSide">
+                    <img src="/image/Dash2.svg">
+                    <h3>Saved Location</h3>
+                </div>
 
-   <section class="sideBarRight">
-    <!-- top bar -->
-    <section class="Search">
-        <div class="SearchInner">
-            <h2>Today</h2>
-        </div>
-        <div class="SearchInner">
-                        <form class="searchForm">
-                <input type="search" placeholder="Enter City Name..">
-                <button type="submit">&#x1F50D;</button>
-              </form>
-        </div>
-        <div class="SearchInner">
-            <div class="icon-Bar">
-                    <i class='far bellIcon'>&#xf0f3;</i>
-                    <i class='far bellIcon'>&#xf0f3;</i>
+                <div class="dashSide">
+                    <img src="/image/Dash3.svg">
+                    <h3>Settings</h3>
+                </div>
+
+                <div class="dashSide">
+                    <img src="/image/Dash4.svg">
+                    <h3>About</h3>
+                </div>
+
+
+
+            </section>
+        </section>
+
+        <section class="sideBarRight">
+            <!-- top bar -->
+            <section class="Search">
+                <div class="SearchInner Drop">
+                    <h2>Today</h2>
+                    <select class="selectBar" name="SavedLocations" selected="city1" id="Location">
+                        <option value="selectlocation">Select Location</option>
+                        <option value="CurrentLocation">Current Location</option>
+                        <option value="city1">Chennai</option>
+                    </select>
+                </div>
+                <div class="SearchInner">
+                    <form class="searchForm" id="formAction">
+                        <input id="searchdata" type="search" placeholder="Enter City Name..">
+                        <button type="submit"><img src="/image/searchIcon.svg"></button>
+                    </form>
+                </div>
+                <div class="SearchInner">
+                    <div class="icon-Bar" id="saveLocation">
+                        <i class='far bellIcon'><img src="/image/bellicon.svg"></i>
                     </div>
-        </div>
-        
-    </section>
-    <!-- Today whaethr -->
-    <section>
-        <div class="grid-container">
-            <div class="box box1">Box 1</div>
-            <div class="box">Box 2</div>
-            <div class="box">Box 3</div>
-            <div class="box">Box 4</div>
-            <div class="box">Box 5</div>
-        </div>
-    </section>
-<!-- Hours section -->
-    <section>
-        <div class="HoursTemp">
-            <div class="HourBox"> Time</div>
-       
-       
-            <div class="HourBox"> Time</div>
-       
-       
-            <div class="HourBox"> Time</div>
-        
-        
-            <div class="HourBox"> Time</div>
-        
-      
-            <div class="HourBox"> Time</div>
-        </div>
-    </section>
+                </div>
 
-    <!-- Day Temprature -->
-    <section>
-        <div class="DayTemp">
-            <div class="DayBox"> Time</div>
-       
-       
-            <div class="DayBox"> Time</div>
-       
-       
-            <div class="DayBox"> Time</div>
-        
-        
-            <div class="DayBox"> Time</div>
-        
-      
-            <div class="DayBox"> Time</div>
+            </section>
+            <!-- Today whaethr -->
+            <section>
+                <div class="grid-container">
+                   
+                    
+                    <div class="box box1 wbox2">
+                        <div>
+                            <h2>Chennai</h2>
+                        </div>
 
-            <div class="DayBox"> Time</div>
 
-        </div>
+                        <div class=" Wbox">
+                        <div>
+                            <img id="tempImage" src="/image/image1.svg">
+                        </div>
+                        <div id="tempinner">
+                            <h2 id="tempText">27&deg;F</h2>
+                            <p>FEEL LIKE</p>
+                            <p id="feellike"> 24&deg;C</p>
+                        </div>
+                        </div>
+
+
+                    </div>
+                    
+                
+                    <div class="box P-Box">
+                        <div> <img id="tempImage" src="/image/image2.svg"></div>
+                        <div>
+                            <h2>Pressure</h2>
+                        </div>
+                        <div>
+                            <h3><span id="pressureinner">860</span> hPa </h3>
+                        </div>
+                    </div>
+                    <div class="box P-Box">
+                        <div> <img id="tempImage" src="/image/image3.svg"></div>
+                        <div>
+                            <h2>Wind</h2>
+                        </div>
+                        <div>
+                            <h3><span id="windinner">8</span> mph</h3>
+                        </div>
+                    </div>
+                    <div class="box P-Box">
+                        <div> <img id="tempImage" src="/image/image4.svg"></div>
+                        <div>
+                            <h2>Humidity</h2>
+                        </div>
+                        <div>
+                            <h3><span id="humidityinner">50</span>%</h3>
+                        </div>
+                    </div>
+                    <div class="box P-Box">
+                        <div> <img id="tempImage" src="/image/image5.svg"></div>
+                        <div>
+                            <h2>UV Index</h2>
+                        </div>
+                        <div>
+                            <h3><span id="UVinner">3</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Hours section -->
+            <section>
+                <div class="HoursTemp">
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours1">01</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp1">+23</span>&deg;F</div>
+                    </div>
+
+
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours2">02</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp2">+25</span>&deg;F</div>
+                    </div>
+
+
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours3">03</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp3">+23</span>&deg;F</div>
+                    </div>
+
+
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours4">04</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp4">+24</span>&deg;F</div>
+                    </div>
+
+
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours5">05</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp5">+23</span>&deg;F</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day Temprature -->
+            <section>
+                <div class="DayTemp">
+                    <div class="DayBox" id="DayTemp1">
+                        <div>
+                            <p>Mon</p>
+                        </div>
+                        <div>
+                            <p>13 May</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div>
+                            <p>23&deg;F</p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="DayBox" id="DayTemp2">
+
+
+                        <div>
+                            <p>Mon</p>
+                        </div>
+                        <div>
+                            <p>13 May</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div>
+                            <p>23&deg;F</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="DayBox" id="DayTemp3">
+                        <div>
+                            <p>Mon</p>
+                        </div>
+                        <div>
+                            <p>13 May</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div>
+                            <p>23&deg;F</p>
+                        </div>
+                    </div>
+
+
+                    <div class="DayBox" id="DayTemp4">
+                        <div>
+                            <p>Mon</p>
+                        </div>
+                        <div>
+                            <p>13 May</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div>
+                            <p>23&deg;F</p>
+                        </div>
+                    </div>
+
+
+                    <div class="DayBox" id="DayTemp5">
+                        <div>
+                            <p>Mon</p>
+                        </div>
+                        <div>
+                            <p>13 May</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div>
+                            <p>23&deg;F</p>
+                        </div>
+                    </div>
+
+                    <div class="DayBox" id="DayTemp6">
+                        <div>
+                            <p>Mon</p>
+                        </div>
+                        <div>
+                            <p>13 May</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div>
+                            <p>23&deg;F</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
     </section>
-
-    </section>  
-</section>
     <!-- script files -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/script.js"></script>
 </body>
+
 </html>
