@@ -69,10 +69,72 @@ document.getElementById("Location").addEventListener("change", getCoordinates);
 
 async function getWeatherData(latitude, longitude) {
     const apiKey = "YDKLNUJLBQLPSZXWKD3MT5XQS";
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?key=${apiKey}`);
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?unitGroup=uk&key=${apiKey}`);
+    // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/12.9228,80.1583?unitGroup=uk&key=YDKLNUJLBQLPSZXWKD3MT5XQS
+
     const data = await response.json();
     return data;
 }
+
+
+const searchForm = document.getElementById("formAction");
+searchForm.addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const cityNameInput = document.getElementById("searchdata");
+    const cityName = cityNameInput.value;
+
+    if (cityName) {
+        
+        WeatherData = await getWeatherDataByCityName(cityName);
+        const latitude=WeatherData.latitude;
+        const longitude =WeatherData.longitude;
+        saveCoordinatesToLocalStorage(latitude, longitude);
+    
+                console.log(WeatherData);
+                test();
+    } else {
+        alert("City name cannot be empty.");
+    }
+});
+
+async function getWeatherDataByCityName(cityName) {
+   
+    const apiKey = "YDKLNUJLBQLPSZXWKD3MT5XQS";
+    // const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/unitGroup=uk/${cityName}?key=${apiKey}`);
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=uk&key=${apiKey}`);
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+   
+   
+   
+   
+    // const key = '3fb4ad9b362949b5a0cf0f155432a6cc';
+    // try {
+    //     const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${key}`);
+    //     const data = await response.json();
+
+    //     if (data.results.length > 0) {
+    //         const { lat, lng } = data.results[0].geometry;
+
+    //         // Save the coordinates to localStorage
+    //         saveCoordinatesToLocalStorage(lat, lng);
+
+    //         alert("Location found - Latitude: " + lat + ", Longitude: " + lng);
+    //         getCityName(lat, lng);
+    //         WeatherData = await getWeatherData(lat, lng);
+    //         console.log(WeatherData);
+    //         test();
+    //     } else {
+    //         alert("City name not found.");
+    //     }
+    // } catch (error) {
+    //     console.error("Error getting weather data by city name:", error);
+    // }
+}
+
 
 async function getCityName(lat, lon) {
     try {
@@ -272,41 +334,4 @@ function displaySavedLocations() {
 //     const data = await response.json();
 //     return data;
 // }
-const searchForm = document.getElementById("formAction");
-searchForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const cityNameInput = document.getElementById("searchdata");
-    const cityName = cityNameInput.value;
-
-    if (cityName) {
-        getWeatherDataByCityName(cityName);
-    } else {
-        alert("City name cannot be empty.");
-    }
-});
-
-async function getWeatherDataByCityName(cityName) {
-    const key = '3fb4ad9b362949b5a0cf0f155432a6cc';
-    try {
-        const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${key}`);
-        const data = await response.json();
-
-        if (data.results.length > 0) {
-            const { lat, lng } = data.results[0].geometry;
-
-            // Save the coordinates to localStorage
-            saveCoordinatesToLocalStorage(lat, lng);
-
-            alert("Location found - Latitude: " + lat + ", Longitude: " + lng);
-            getCityName(lat, lng);
-            WeatherData = await getWeatherData(lat, lng);
-            console.log(WeatherData);
-            test();
-        } else {
-            alert("City name not found.");
-        }
-    } catch (error) {
-        console.error("Error getting weather data by city name:", error);
-    }
-}
+console.log(WeatherData);
