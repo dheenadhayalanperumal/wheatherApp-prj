@@ -107,32 +107,6 @@ async function getWeatherDataByCityName(cityName) {
     const data = await response.json();
     console.log(data);
     return data;
-   
-   
-   
-   
-    // const key = '3fb4ad9b362949b5a0cf0f155432a6cc';
-    // try {
-    //     const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${key}`);
-    //     const data = await response.json();
-
-    //     if (data.results.length > 0) {
-    //         const { lat, lng } = data.results[0].geometry;
-
-    //         // Save the coordinates to localStorage
-    //         saveCoordinatesToLocalStorage(lat, lng);
-
-    //         alert("Location found - Latitude: " + lat + ", Longitude: " + lng);
-    //         getCityName(lat, lng);
-    //         WeatherData = await getWeatherData(lat, lng);
-    //         console.log(WeatherData);
-    //         test();
-    //     } else {
-    //         alert("City name not found.");
-    //     }
-    // } catch (error) {
-    //     console.error("Error getting weather data by city name:", error);
-    // }
 }
 
 
@@ -259,36 +233,26 @@ function displayDayTemp(targetId, daysToAdd) {
 const saveButton = document.getElementById("saveLocation");
 
 saveButton.addEventListener("click", function () {
-    // Get current location coordinates
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async function (position) {
-            const { latitude, longitude } = position.coords;
+    // Prompt for the city name
+    const cityName = prompt("Enter the city name:");
 
-            // Prompt for the city name
-            const cityName = prompt("Enter the city name:");
+    if (cityName && WeatherData && WeatherData.latitude && WeatherData.longitude) {
+        // Retrieve existing locations from local storage or initialize an empty array
+        const existingLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
 
-            if (cityName) {
-                // Retrieve existing locations from local storage or initialize an empty array
-                const existingLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
+        // Add the new location to the array using API coordinates
+        const newLocation = { cityName, latitude: WeatherData.latitude, longitude: WeatherData.longitude };
+        existingLocations.push(newLocation);
 
-                // Add the new location to the array
-                const newLocation = { cityName, latitude, longitude };
-                existingLocations.push(newLocation);
+        // Save the updated array to local storage
+        localStorage.setItem('savedLocations', JSON.stringify(existingLocations));
 
-                // Save the updated array to local storage
-                localStorage.setItem('savedLocations', JSON.stringify(existingLocations));
-
-                console.log("Location saved successfully.");
-            } else {
-                console.log("City name cannot be empty.");
-            }
-        }, function (error) {
-            alert("Error getting current location: " + error.message);
-        });
+        console.log("Location saved successfully.");
     } else {
-        alert("Geolocation is not supported by this browser.");
+        console.log("City name or coordinates are missing.");
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const lastLocation = getLastLocationFromLocalStorage();
@@ -328,10 +292,5 @@ function displaySavedLocations() {
 }
 
 
-// async function getWeatherData(city) {
-//     const apiKey = "YDKLNUJLBQLPSZXWKD3MT5XQS";
-//     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${apiKey}`);
-//     const data = await response.json();
-//     return data;
-// }
+
 console.log(WeatherData);
