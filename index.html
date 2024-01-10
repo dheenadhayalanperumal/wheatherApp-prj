@@ -14,7 +14,7 @@
 
 <body>
     <section class="fullview">
-        <section class="sideBar">
+        <!-- <section class="sideBar">
             <section class="marginDash">
                 <div class="dashSide">
                     <img src="/image/Dash1.svg">
@@ -39,7 +39,7 @@
 
 
             </section>
-        </section>
+        </section> -->
 
         <section class="sideBarRight">
             <!-- top bar -->
@@ -53,46 +53,50 @@
                     </select>
                 </div>
                 <div class="SearchInner">
-                    <form class="searchForm" id="formAction">
-                        <input id="searchdata" type="search" placeholder="Enter City Name..">
-                        <button type="submit"><img src="/image/searchIcon.svg"></button>
-                    </form>
+                    <div class="searchForm">
+                        <form class="searchForm1" id="formAction">
+                            <input id="searchdata" type="search" placeholder="Enter City Name..">
+                            <button type="submit"><img src="/image/searchIcon.svg"></button>
+                        </form>
+                        <button onclick="getlocation()"><img src="/image/locIcon.svg"></button>
+                    </div>
                 </div>
                 <div class="SearchInner">
                     <div class="icon-Bar" id="saveLocation">
                         <i class='far bellIcon'><img src="/image/bellicon.svg"></i>
                     </div>
+                    
                 </div>
 
             </section>
             <!-- Today whaethr -->
             <section>
                 <div class="grid-container">
-                   
-                    
+
+
                     <div class="box box1 wbox2">
                         <div>
-                            <h2>Chennai</h2>
+                            <h2 id="cityName">Chennai</h2>
                         </div>
 
 
                         <div class=" Wbox">
-                        <div>
-                            <img id="tempImage" src="/image/image1.svg">
-                        </div>
-                        <div id="tempinner">
-                            <h2 id="tempText">27&deg;F</h2>
-                            <p>FEEL LIKE</p>
-                            <p id="feellike"> 24&deg;C</p>
-                        </div>
+                            <div >
+                                <img  class="imagehight" id="tempImage" src="/image/weatherani.gif">
+                            </div>
+                            <div id="tempinner">
+                                <h2 id="tempText">27</h2>
+                                <p>FEEL LIKE</p>
+                                <p id="feellike"> 24&deg;C</p>
+                            </div>
                         </div>
 
 
                     </div>
-                    
-                
+
+
                     <div class="box P-Box">
-                        <div> <img id="tempImage" src="/image/image2.svg"></div>
+                        <div> <img class="hightimg" id="tempImage" src="/image/pressure.gif"></div>
                         <div>
                             <h2>Pressure</h2>
                         </div>
@@ -101,16 +105,16 @@
                         </div>
                     </div>
                     <div class="box P-Box">
-                        <div> <img id="tempImage" src="/image/image3.svg"></div>
+                        <div> <img class="hightimg" id="tempImage" src="/image/wind.gif"></div>
                         <div>
                             <h2>Wind</h2>
                         </div>
                         <div>
-                            <h3><span id="windinner">8</span> mph</h3>
+                            <h3><span id="windinner">8</span> kph</h3>
                         </div>
                     </div>
                     <div class="box P-Box">
-                        <div> <img id="tempImage" src="/image/image4.svg"></div>
+                        <div> <img class="hightimg" id="tempImage" src="/image/huminity.gif"></div>
                         <div>
                             <h2>Humidity</h2>
                         </div>
@@ -119,7 +123,7 @@
                         </div>
                     </div>
                     <div class="box P-Box">
-                        <div> <img id="tempImage" src="/image/image5.svg"></div>
+                        <div> <img class="hightimg" id="tempImage" src="/image/uv.gif"></div>
                         <div>
                             <h2>UV Index</h2>
                         </div>
@@ -137,7 +141,7 @@
                             <p><span id="Hours1">01</span>.00</p>
                         </div>
                         <div><img src="/image/image6.svg"></div>
-                        <div><span id="HoursTemp1">+23</span>&deg;F</div>
+                        <div><span id="HoursTemp1">23</span>&deg;C</div>
                     </div>
 
 
@@ -146,7 +150,7 @@
                             <p><span id="Hours2">02</span>.00</p>
                         </div>
                         <div><img src="/image/image6.svg"></div>
-                        <div><span id="HoursTemp2">+25</span>&deg;F</div>
+                        <div><span id="HoursTemp2">25</span>&deg;C</div>
                     </div>
 
 
@@ -155,7 +159,7 @@
                             <p><span id="Hours3">03</span>.00</p>
                         </div>
                         <div><img src="/image/image6.svg"></div>
-                        <div><span id="HoursTemp3">+23</span>&deg;F</div>
+                        <div><span id="HoursTemp3">23</span>&deg;C</div>
                     </div>
 
 
@@ -164,7 +168,7 @@
                             <p><span id="Hours4">04</span>.00</p>
                         </div>
                         <div><img src="/image/image6.svg"></div>
-                        <div><span id="HoursTemp4">+24</span>&deg;F</div>
+                        <div><span id="HoursTemp4">24</span>&deg;C</div>
                     </div>
 
 
@@ -173,8 +177,37 @@
                             <p><span id="Hours5">05</span>.00</p>
                         </div>
                         <div><img src="/image/image6.svg"></div>
-                        <div><span id="HoursTemp5">+23</span>&deg;F</div>
+                        <div><span id="HoursTemp5">23</span>&deg;C</div>
                     </div>
+
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours6">02</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp6">25</span>&deg;C</div>
+                    </div>
+                    
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours7">02</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp7">25</span>&deg;C</div>
+                    </div>
+
+                    <div class="HourBox">
+                        <div>
+                            <p><span id="Hours8">02</span>.00</p>
+                        </div>
+                        <div><img src="/image/image6.svg"></div>
+                        <div><span id="HoursTemp8">25</span>&deg;C</div>
+                    </div>
+
+
+
+
+
                 </div>
             </section>
 
@@ -190,7 +223,7 @@
                         </div>
                         <div><img src="/image/image6.svg"></div>
                         <div>
-                            <p>23&deg;F</p>
+                            <p>23&deg;C</p>
                         </div>
                     </div>
 
@@ -207,7 +240,7 @@
                         </div>
                         <div><img src="/image/image6.svg"></div>
                         <div>
-                            <p>23&deg;F</p>
+                            <p>23&deg;C</p>
                         </div>
 
                     </div>
@@ -222,7 +255,7 @@
                         </div>
                         <div><img src="/image/image6.svg"></div>
                         <div>
-                            <p>23&deg;F</p>
+                            <p>23&deg;C</p>
                         </div>
                     </div>
 
@@ -236,7 +269,7 @@
                         </div>
                         <div><img src="/image/image6.svg"></div>
                         <div>
-                            <p>23&deg;F</p>
+                            <p>23&deg;C</p>
                         </div>
                     </div>
 
@@ -250,7 +283,7 @@
                         </div>
                         <div><img src="/image/image6.svg"></div>
                         <div>
-                            <p>23&deg;F</p>
+                            <p>23&deg;C</p>
                         </div>
                     </div>
 
@@ -263,7 +296,7 @@
                         </div>
                         <div><img src="/image/image6.svg"></div>
                         <div>
-                            <p>23&deg;F</p>
+                            <p>23&deg;C</p>
                         </div>
                     </div>
 
@@ -275,6 +308,7 @@
     <!-- script files -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/script.js"></script>
+    <!-- <script src="/script1.js"></script> -->
 </body>
 
 </html>

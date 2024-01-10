@@ -1,5 +1,19 @@
+input:focus,
+      textarea:focus,
+      select:focus,
+      a:focus {
+        outline: none;
+      }
+.imagehight{
+    height: 150px;
+    width: 150px;
+}    
+.hightimg{
+    height: 50px;
+    width: 50px;
+}
 
-    .Search {
+      .Search {
         display: flex;
         color: #00CAFD;
         justify-content: space-between;
@@ -25,9 +39,19 @@
         width: 433px;
         height: 59px;
         display: flex;
-        justify-content: space-between;
+        justify-content: right;
         border: 2px #00CAFD solid;
         border-radius: 5px;
+        
+
+    }
+    .searchForm1{
+        width: 433px;
+        height: 59px;
+        display: flex;
+        justify-content: space-between;
+        border-color: transparent;
+        border-radius: inherit;
         
 
     }
@@ -61,7 +85,8 @@
 
     }
     .sideBarRight{
-        width:80%;
+        width:100%;
+        height: 100vh;
 
     }
     .marginDash{
@@ -81,7 +106,7 @@
             gap: 15px;
             width: auto;
             margin:0px 20px 0px 25px;
-            height:380px; /* Adjust the gap between boxes as needed */
+            height:auto; /* Adjust the gap between boxes as needed */
         }
 
         .box {
