@@ -239,51 +239,58 @@ function displayHourTemp(id, hoursToAdd) {
 }
 
 function displayDayTemp(targetId, daysToAdd) {
-  var months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  var daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  var now = new Date();
-  now.setDate(now.getDate() + daysToAdd);
-  var targetElement = document.getElementById(targetId);
-
-  // Get the day, date, and month
-  var todayMonth = months[now.getMonth()];
-  var todayDate = now.getDate();
-  var todayDay = daysOfWeek[now.getDay()];
-
-  // Display the day, date, and month along with an image and temperature
-  targetElement.innerHTML = `
-        <div>
-            <p>${todayDay}</p>
-        </div>
-        <div>
-            <p>${todayMonth}, ${todayDate}</p>
-        </div>
-        <div><img src="/image/image6.svg"></div>
-        <div>
-            <p>${WeatherData.days[daysToAdd].temp}&deg;C</p>
-        </div>`;
-}
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    var daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    var now = new Date();
+    now.setDate(now.getDate() + daysToAdd);
+    var targetElement = document.getElementById(targetId);
+  
+    // Get the day, date, and month
+    var todayMonth = months[now.getMonth()];
+    var todayDate = now.getDate();
+    var todayDay = daysOfWeek[now.getDay()];
+  
+    // Get the weather icon code
+    var weatherIcon = WeatherData.days[daysToAdd].icon; // Replace with the actual property name
+  
+    // Map the weather icon code to the corresponding image source
+    var iconImageSrc = getIconImageSrc(weatherIcon);
+  
+    // Display the day, date, and month along with an image and temperature
+    targetElement.innerHTML = `
+          <div>
+              <p>${todayDay}</p>
+          </div>
+          <div>
+              <p>${todayMonth}, ${todayDate}</p>
+          </div>
+          <div><img src="${iconImageSrc}"></div>
+          <div>
+              <p>${WeatherData.days[daysToAdd].temp}&deg;C</p>
+          </div>`;
+  }
+  
 
 const saveButton = document.getElementById("saveLocation");
 
@@ -362,5 +369,45 @@ function displaySavedLocations() {
     selectElement.appendChild(option);
   });
 }
+
+function getIconImageSrc(iconCode) {
+    switch (iconCode) {
+      case 'snow':
+        return '/path/to/snow.png';
+      case 'snow-showers-day':
+        return '/path/to/snow-showers-day.png';
+      case 'snow-showers-night':
+        return '/path/to/snow-showers-night.png';
+      case 'thunder-rain':
+        return '/path/to/thunder-rain.png';
+      case 'thunder-showers-day':
+        return '/path/to/thunder-showers-day.png';
+      case 'thunder-showers-night':
+        return '/path/to/thunder-showers-night.png';
+      case 'rain':
+        return '/path/to/rain.png';
+      case 'showers-day':
+        return '/path/to/showers-day.png';
+      case 'showers-night':
+        return '/path/to/showers-night.png';
+      case 'fog':
+        return '/path/to/fog.png';
+      case 'wind':
+        return '/path/to/wind.png';
+      case 'cloudy':
+        return '/path/to/cloudy.png';
+      case 'partly-cloudy-day':
+        return '/image/icon/partly-cloudy-day.svg';
+      case 'partly-cloudy-night':
+        return '/image/icon/partly-cloudy-night.svg';
+      case 'clear-day':
+        return '/path/to/clear-day.png';
+      case 'clear-night':
+        return '/path/to/clear-night.png';
+      default:
+        return '/path/to/default.png';
+    }
+  }
+  
 
 console.log(WeatherData);
