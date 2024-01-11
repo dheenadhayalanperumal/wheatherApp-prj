@@ -165,6 +165,7 @@ function test() {
   displayhumidity(WeatherData.currentConditions.humidity);
   displayUV(WeatherData.currentConditions.uvindex);
   cityNameofLocation();
+  dispalyImage();
 //   getCityName(lastLocation.latitude, lastLocation.longitude);
 
   // Display time and temperature for each hour
@@ -178,6 +179,12 @@ function test() {
   for (let i = 0; i < 6; i++) {
     displayDayTemp(`DayTemp${i + 1}`, i);
   }
+
+  for (let i = 0; i < 9; i++) {
+    dispalyHourImage(`HourImage${i + 1}`, i*3);
+  }
+
+
 }
 
 function capitalizeFirstLetter(string) {
@@ -238,6 +245,20 @@ function displayHourTemp(id, hoursToAdd) {
   targetElement.innerText = WeatherData.days[0].hours[newHours].temp;
 }
 
+
+
+
+function dispalyHourImage(id, hoursToAdd) {
+  const HourImage = document.getElementById(id);
+  var now = new Date();
+  var newHours = (now.getHours() + hoursToAdd) % 24;
+  const weatherIcon = WeatherData.days[0].hours[newHours].icon; // Assuming this holds the weather icon
+  console.log(weatherIcon);
+  const iconImageSrc = getIconImageSrc(weatherIcon);
+  HourImage.src = iconImageSrc;
+}
+
+
 function displayDayTemp(targetId, daysToAdd) {
     var months = [
       "January",
@@ -276,6 +297,7 @@ function displayDayTemp(targetId, daysToAdd) {
   
     // Map the weather icon code to the corresponding image source
     var iconImageSrc = getIconImageSrc(weatherIcon);
+    // console.log(iconImageSrc);
   
     // Display the day, date, and month along with an image and temperature
     targetElement.innerHTML = `
@@ -285,7 +307,7 @@ function displayDayTemp(targetId, daysToAdd) {
           <div>
               <p>${todayMonth}, ${todayDate}</p>
           </div>
-          <div><img src="${iconImageSrc}"></div>
+          <div><img class="dayImageHgt" src="${iconImageSrc}"></div>
           <div>
               <p>${WeatherData.days[daysToAdd].temp}&deg;C</p>
           </div>`;
@@ -373,41 +395,51 @@ function displaySavedLocations() {
 function getIconImageSrc(iconCode) {
     switch (iconCode) {
       case 'snow':
-        return '/path/to/snow.png';
+        return '/image/icon/snow.gif';
       case 'snow-showers-day':
-        return '/path/to/snow-showers-day.png';
+        return '/image/icon/snow-showers-day.gif';
       case 'snow-showers-night':
-        return '/path/to/snow-showers-night.png';
+        return '/image/icon/snow-showers-night.gif';
       case 'thunder-rain':
-        return '/path/to/thunder-rain.png';
+        return '/image/icon/thunder-rain.svg';
       case 'thunder-showers-day':
-        return '/path/to/thunder-showers-day.png';
+        return '/image/icon/thunder-showers-day.gif';
       case 'thunder-showers-night':
-        return '/path/to/thunder-showers-night.png';
+        return '/image/icon/thunder-showers-day.gif';
       case 'rain':
-        return '/path/to/rain.png';
+        return '/image/icon/rain.gif';
       case 'showers-day':
-        return '/path/to/showers-day.png';
+        return '/image/icon/showers-day.gif';
       case 'showers-night':
-        return '/path/to/showers-night.png';
+        return '/image/icon/showers-night.gif';
       case 'fog':
-        return '/path/to/fog.png';
+        return '/image/icon/fog.gif';
       case 'wind':
-        return '/path/to/wind.png';
+        return '/image/icon/wind.svg';
       case 'cloudy':
-        return '/path/to/cloudy.png';
+        return '/image/icon/partly-cloudy-day.gif';
       case 'partly-cloudy-day':
-        return '/image/icon/partly-cloudy-day.svg';
+        return '/image/icon/partly-cloudy-day.gif';
       case 'partly-cloudy-night':
-        return '/image/icon/partly-cloudy-night.svg';
+        return '/image/icon/partly-cloudy-night.gif';
       case 'clear-day':
-        return '/path/to/clear-day.png';
+        return '/image/icon/clear-day.gif';
       case 'clear-night':
-        return '/path/to/clear-night.png';
+        return '/image/icon/clear-night.gif';
       default:
-        return '/path/to/default.png';
+        return '/image/icon/clear-day.gif';
     }
   }
   
 
 console.log(WeatherData);
+
+function dispalyImage(){
+  const imageElement = document.getElementById("tempImage"); // Use more descriptive variable name
+  const weatherIcon = WeatherData.currentConditions.icon;
+  // console.log(weatherIcon); // Ensure WeatherData is accessible within this function's scope
+
+  const iconImageSrc = getIconImageSrc(weatherIcon); // Assuming this function fetches the image URL
+
+  imageElement.src = iconImageSrc; // Directly set the image source
+}

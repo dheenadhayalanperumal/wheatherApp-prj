@@ -281,3 +281,12 @@ input:focus,
               grid-template-columns: repeat(auto-fit, minmax(200px,1fr));  /* Three columns for tablets */
             }
           }
+
+          .dayImageHgt{
+            height: 180px;
+            width: 180px;
+          }
+          .hourImageHgt{
+            height: 150px;
+            width: 150px;
+          }
