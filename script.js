@@ -1,35 +1,33 @@
-function getlocation(){
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          async function (position) {
-            // var currentLat = position.coords.latitude;
-            // var currentLng = position.coords.longitude;
-            const { latitude, longitude } = position.coords;
-  
-            // Save the coordinates to localStorage
-            saveCoordinatesToLocalStorage(latitude, longitude);
-  
-            alert(
-              "Current Location - Latitude: " +
-                latitude +
-                ", Longitude: " +
-                longitude
-            );
-            getCityName(latitude, longitude);
-            WeatherData = await getWeatherData(latitude, longitude);
-            console.log(WeatherData);
-            test();
-          },
-          function (error) {
-            alert("Error getting current location: " + error.message);
-          }
+function getlocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      async function (position) {
+        // var currentLat = position.coords.latitude;
+        // var currentLng = position.coords.longitude;
+        const { latitude, longitude } = position.coords;
+
+        // Save the coordinates to localStorage
+        saveCoordinatesToLocalStorage(latitude, longitude);
+
+        alert(
+          "Current Location - Latitude: " +
+            latitude +
+            ", Longitude: " +
+            longitude
         );
-      } else {
-        alert("Geolocation is not supported by this browser.");
+        getCityName(latitude, longitude);
+        WeatherData = await getWeatherData(latitude, longitude);
+        console.log(WeatherData);
+        test();
+      },
+      function (error) {
+        alert("Error getting current location: " + error.message);
       }
+    );
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
 }
-
-
 
 var WeatherData = null;
 async function getCoordinates() {
@@ -142,14 +140,14 @@ async function getCityName(lat, lon) {
       const cityNameElement = document.getElementById("cityName");
       cityNameElement.innerText = city;
 
-    //   console.log(
-    //     "Current Location - Latitude: " +
-    //       lat +
-    //       ", Longitude: " +
-    //       lon +
-    //       ", City: " +
-    //       city
-    //   );
+      //   console.log(
+      //     "Current Location - Latitude: " +
+      //       lat +
+      //       ", Longitude: " +
+      //       lon +
+      //       ", City: " +
+      //       city
+      //   );
     } else {
       alert("City name not available.");
     }
@@ -158,7 +156,7 @@ async function getCityName(lat, lon) {
   }
 }
 function test() {
-//   console.log("hello");
+  //   console.log("hello");
   displayTemperature(WeatherData.currentConditions.temp);
   displayPressure(WeatherData.currentConditions.pressure);
   displaywind(WeatherData.currentConditions.windspeed);
@@ -166,13 +164,13 @@ function test() {
   displayUV(WeatherData.currentConditions.uvindex);
   cityNameofLocation();
   dispalyImage();
-//   getCityName(lastLocation.latitude, lastLocation.longitude);
+  //   getCityName(lastLocation.latitude, lastLocation.longitude);
 
   // Display time and temperature for each hour
   for (let i = 0; i < 8; i++) {
     // console.log(i);
-    displayTime(`Hours${i + 1}`, (i*3));
-    displayHourTemp(`HoursTemp${i + 1}`, i*3);
+    displayTime(`Hours${i + 1}`, i * 3);
+    displayHourTemp(`HoursTemp${i + 1}`, i * 3);
   }
 
   // Display day and temperature for each day
@@ -181,10 +179,8 @@ function test() {
   }
 
   for (let i = 0; i < 9; i++) {
-    dispalyHourImage(`HourImage${i + 1}`, i*3);
+    dispalyHourImage(`HourImage${i + 1}`, i * 3);
   }
-
-
 }
 
 function capitalizeFirstLetter(string) {
@@ -223,10 +219,10 @@ function displayUV(UV) {
 
 function displayTime(id, hoursToAdd) {
   var now = new Date();
- 
+
   var targetElement = document.getElementById(id);
   var newHours = (now.getHours() + hoursToAdd) % 24;
-//   console.log(newHours); // Ensure the result is within the range 0-23
+  //   console.log(newHours); // Ensure the result is within the range 0-23
 
   // Add leading zero if needed
   newHours = newHours < 10 ? "0" + newHours : newHours;
@@ -245,9 +241,6 @@ function displayHourTemp(id, hoursToAdd) {
   targetElement.innerText = WeatherData.days[0].hours[newHours].temp;
 }
 
-
-
-
 function dispalyHourImage(id, hoursToAdd) {
   const HourImage = document.getElementById(id);
   var now = new Date();
@@ -258,49 +251,48 @@ function dispalyHourImage(id, hoursToAdd) {
   HourImage.src = iconImageSrc;
 }
 
-
 function displayDayTemp(targetId, daysToAdd) {
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    var daysOfWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    var now = new Date();
-    now.setDate(now.getDate() + daysToAdd);
-    var targetElement = document.getElementById(targetId);
-  
-    // Get the day, date, and month
-    var todayMonth = months[now.getMonth()];
-    var todayDate = now.getDate();
-    var todayDay = daysOfWeek[now.getDay()];
-  
-    // Get the weather icon code
-    var weatherIcon = WeatherData.days[daysToAdd].icon; // Replace with the actual property name
-  
-    // Map the weather icon code to the corresponding image source
-    var iconImageSrc = getIconImageSrc(weatherIcon);
-    // console.log(iconImageSrc);
-  
-    // Display the day, date, and month along with an image and temperature
-    targetElement.innerHTML = `
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  var now = new Date();
+  now.setDate(now.getDate() + daysToAdd);
+  var targetElement = document.getElementById(targetId);
+
+  // Get the day, date, and month
+  var todayMonth = months[now.getMonth()];
+  var todayDate = now.getDate();
+  var todayDay = daysOfWeek[now.getDay()];
+
+  // Get the weather icon code
+  var weatherIcon = WeatherData.days[daysToAdd].icon; // Replace with the actual property name
+
+  // Map the weather icon code to the corresponding image source
+  var iconImageSrc = getIconImageSrc(weatherIcon);
+  // console.log(iconImageSrc);
+
+  // Display the day, date, and month along with an image and temperature
+  targetElement.innerHTML = `
           <div>
               <p>${todayDay}</p>
           </div>
@@ -311,8 +303,7 @@ function displayDayTemp(targetId, daysToAdd) {
           <div>
               <p>${WeatherData.days[daysToAdd].temp}&deg;C</p>
           </div>`;
-  }
-  
+}
 
 const saveButton = document.getElementById("saveLocation");
 
@@ -393,48 +384,47 @@ function displaySavedLocations() {
 }
 
 function getIconImageSrc(iconCode) {
-    switch (iconCode) {
-      case 'snow':
-        return '/image/icon/snow.gif';
-      case 'snow-showers-day':
-        return '/image/icon/snow-showers-day.gif';
-      case 'snow-showers-night':
-        return '/image/icon/snow-showers-night.gif';
-      case 'thunder-rain':
-        return '/image/icon/thunder-rain.svg';
-      case 'thunder-showers-day':
-        return '/image/icon/thunder-showers-day.gif';
-      case 'thunder-showers-night':
-        return '/image/icon/thunder-showers-day.gif';
-      case 'rain':
-        return '/image/icon/rain.gif';
-      case 'showers-day':
-        return '/image/icon/showers-day.gif';
-      case 'showers-night':
-        return '/image/icon/showers-night.gif';
-      case 'fog':
-        return '/image/icon/fog.gif';
-      case 'wind':
-        return '/image/icon/wind.svg';
-      case 'cloudy':
-        return '/image/icon/partly-cloudy-day.gif';
-      case 'partly-cloudy-day':
-        return '/image/icon/partly-cloudy-day.gif';
-      case 'partly-cloudy-night':
-        return '/image/icon/partly-cloudy-night.gif';
-      case 'clear-day':
-        return '/image/icon/clear-day.gif';
-      case 'clear-night':
-        return '/image/icon/clear-night.gif';
-      default:
-        return '/image/icon/clear-day.gif';
-    }
+  switch (iconCode) {
+    case "snow":
+      return "/image/icon/snow.gif";
+    case "snow-showers-day":
+      return "/image/icon/snow-showers-day.gif";
+    case "snow-showers-night":
+      return "/image/icon/snow-showers-night.gif";
+    case "thunder-rain":
+      return "/image/icon/thunder-rain.svg";
+    case "thunder-showers-day":
+      return "/image/icon/thunder-showers-day.gif";
+    case "thunder-showers-night":
+      return "/image/icon/thunder-showers-day.gif";
+    case "rain":
+      return "/image/icon/rain.gif";
+    case "showers-day":
+      return "/image/icon/showers-day.gif";
+    case "showers-night":
+      return "/image/icon/showers-night.gif";
+    case "fog":
+      return "/image/icon/fog.gif";
+    case "wind":
+      return "/image/icon/wind.svg";
+    case "cloudy":
+      return "/image/icon/partly-cloudy-day.gif";
+    case "partly-cloudy-day":
+      return "/image/icon/partly-cloudy-day.gif";
+    case "partly-cloudy-night":
+      return "/image/icon/partly-cloudy-night.gif";
+    case "clear-day":
+      return "/image/icon/clear-day.gif";
+    case "clear-night":
+      return "/image/icon/clear-night.gif";
+    default:
+      return "/image/icon/clear-day.gif";
   }
-  
+}
 
 console.log(WeatherData);
 
-function dispalyImage(){
+function dispalyImage() {
   const imageElement = document.getElementById("tempImage"); // Use more descriptive variable name
   const weatherIcon = WeatherData.currentConditions.icon;
   // console.log(weatherIcon); // Ensure WeatherData is accessible within this function's scope
