@@ -41,7 +41,7 @@ a:focus {
 }
 
 .searchForm {
-    width: 340px;
+    width: 433px;
     height: 59px;
     display: flex;
     justify-content: right;
@@ -311,6 +311,27 @@ input[type="search" i]:focus {
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         /* Three columns for tablets */
+    }
+    .searchForm {
+        width: 340px;
+        height: 59px;
+        display: flex;
+        justify-content: right;
+        border: 2px #00CAFD solid;
+        border-radius: 5px;
+    
+    
+    }
+    
+    .searchForm1 {
+        width: 340px;
+        height: 59px;
+        display: flex;
+        justify-content: space-between;
+        border-color: transparent;
+        border-radius: inherit;
+    
+    
     }
 }
 
