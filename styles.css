@@ -307,33 +307,62 @@ input[type="search" i]:focus {
     /* Adjust scrollbar thumb shape */
 }
 
-@media (max-width: 769px) and (max-width: 1024px) {
+@media (max-width: 760px) and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         /* Three columns for tablets */
     }
     .searchForm {
-        width: 340px;
-        height: 59px;
-        display: flex;
-        justify-content: right;
-        border: 2px #00CAFD solid;
-        border-radius: 5px;
-    
-    
+        width: 433px;      
     }
     
     .searchForm1 {
-        width: 340px;
-        height: 59px;
-        display: flex;
-        justify-content: space-between;
-        border-color: transparent;
-        border-radius: inherit;
-    
-    
+        width: 433px;  
     }
 }
+
+
+@media (max-width: 425px) and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Three columns for tablets */
+    }
+    .searchForm {
+        width: 360px;      
+    }
+    
+    .searchForm1 {
+        width: 360px;  
+    }
+}
+
+@media (max-width: 375px) and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Three columns for tablets */
+    }
+    .searchForm {
+        width: 320px;      
+    }
+    
+    .searchForm1 {
+        width: 320px;  
+    }
+}
+@media (max-width: 320px) and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Three columns for tablets */
+    }
+    .searchForm {
+        width: 320px;      
+    }
+    
+    .searchForm1 {
+        width: 320px;  
+    }
+}
+
 
 .dayImageHgt {
     height: 180px;
