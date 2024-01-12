@@ -164,6 +164,8 @@ function test() {
   displayUV(WeatherData.currentConditions.uvindex);
   cityNameofLocation();
   dispalyImage();
+  displaymintemp();
+  displaymintemp();
   //   getCityName(lastLocation.latitude, lastLocation.longitude);
 
   // Display time and temperature for each hour
@@ -246,7 +248,7 @@ function dispalyHourImage(id, hoursToAdd) {
   var now = new Date();
   var newHours = (now.getHours() + hoursToAdd) % 24;
   const weatherIcon = WeatherData.days[0].hours[newHours].icon; // Assuming this holds the weather icon
-  console.log(weatherIcon);
+  // console.log(weatherIcon);
   const iconImageSrc = getIconImageSrc(weatherIcon);
   HourImage.src = iconImageSrc;
 }
@@ -432,4 +434,15 @@ function dispalyImage() {
   const iconImageSrc = getIconImageSrc(weatherIcon); // Assuming this function fetches the image URL
 
   imageElement.src = iconImageSrc; // Directly set the image source
+}
+function displaymintemp() {
+  const min = document.getElementById("mintemp");
+  minTemp = WeatherData.days[0].tempmin;
+  min.innerText = minTemp;
+}
+maxtemp;
+function displaymintemp() {
+  const max = document.getElementById("maxtemp");
+  maxTemp = WeatherData.days[0].tempmin;
+  max.innerText = maxTemp;
 }
