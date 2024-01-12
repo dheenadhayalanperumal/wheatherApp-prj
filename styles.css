@@ -375,3 +375,10 @@ input[type="search" i]:focus {
     height: 100px;
     width: 100px;
 }
+
+.teamHead{
+    margin-left: 25px;
+    padding-top: 20px;
+    color:#008CCD
+}
+
