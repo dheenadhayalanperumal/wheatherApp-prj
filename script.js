@@ -450,6 +450,6 @@ document.querySelector('#formAction').addEventListener('click', function() {
   document.body.style.zoom = "100%";
 });
 
-document.querySelector('#formAction').addEventListener('click', function() {
+document.querySelector('#formAction').addEventListener('submit', function() {
   document.querySelector('#searchdata').blur();
 });
