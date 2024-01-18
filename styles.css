@@ -6,8 +6,8 @@ a:focus {
 }
 
 .imagehight {
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
 }
 
 .hightimg {
@@ -317,7 +317,7 @@ input[type="search" i]:focus {
 
 @media (max-width: 760px) and (max-width: 1024px) {
     .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         /* Three columns for tablets */
     }
     .searchForm {
@@ -330,7 +330,7 @@ input[type="search" i]:focus {
 }
 
 
-@media (max-width: 425px) and (max-width: 1024px) {
+/* @media (max-width: 425px) and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         /* Three columns for tablets */
@@ -342,11 +342,11 @@ input[type="search" i]:focus {
     .searchForm1 {
         width: 28vh;  
     }
-}
+} */
 
 @media (max-width: 440px) and (max-width: 1024px) {
     .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
         /* Three columns for tablets */
     }
     .searchForm {
@@ -359,7 +359,7 @@ input[type="search" i]:focus {
 }
 @media (max-width: 320px) and (max-width: 1024px) {
     .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         /* Three columns for tablets */
     }
     .searchForm {
