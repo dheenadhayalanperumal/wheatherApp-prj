@@ -446,3 +446,6 @@ function displaymintemp() {
   maxTemp = WeatherData.days[0].tempmin;
   max.innerText = maxTemp;
 }
+document.querySelector('#formAction').addEventListener('click', function() {
+  document.body.style.zoom = "100%";
+});
