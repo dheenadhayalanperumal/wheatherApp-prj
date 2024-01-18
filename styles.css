@@ -42,30 +42,33 @@ a:focus {
 }
 
 .searchForm {
-    width: 433px;
+    width: inherit;
     height: 59px;
     display: flex;
     justify-content: right;
     border: 2px #00CAFD solid;
     border-radius: 5px;
-    gap:10px;
+    /* gap:10px; */
+    flex-wrap: wrap;
+    padding: opx 10px;
+
 
 
 }
 
 .searchForm1 {
-    width: 433px;
+    width: inherit;
     height: 59px;
     display: flex;
     justify-content: space-between;
     border-color: transparent;
     border-radius: inherit;
-
+    
 
 }
 
 .searchForm input {
-    margin-left: 5%;
+    /* margin-left: 5%; */
     border: transparent;
     border-radius: inherit;
 }
@@ -200,7 +203,7 @@ a:focus {
     display: flex;
     justify-content:space-evenly;
     align-items: center;
-    gap: 20px; */
+    /* gap: 20px;  */
     flex-wrap: wrap;
     
 }
@@ -320,56 +323,56 @@ input[type="search" i]:focus {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         /* Three columns for tablets */
     }
-    .searchForm {
+    /* .searchForm {
         width: 35vh;      
     }
     
     .searchForm1 {
         width: 28vh;  
-    }
+    } */
 }
 
 
-/* @media (max-width: 425px) and (max-width: 1024px) {
+ @media (max-width: 425px) and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        /* Three columns for tablets */
+       
     }
-    .searchForm {
+    /* .searchForm {
         width: 30vh;      
     }
     
     .searchForm1 {
         width: 28vh;  
-    }
-} */
+    } */
+} 
 
 @media (max-width: 440px) and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-        /* Three columns for tablets */
+   
     }
-    .searchForm {
+    /* .searchForm {
         width: 30vh;      
     }
     
     .searchForm1 {
         width: 24vh;  
-    }
+    } */
 }
 @media (max-width: 320px) and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        /* Three columns for tablets */
+      
     }
-    .searchForm {
+    /* .searchForm {
         width: 30vh;      
     }
     
     .searchForm1 {
         width: 24vh;  
-    }
-}
+    } */
+} 
 
 
 .dayImageHgt {
@@ -398,3 +401,8 @@ input[type="search" i]:focus {
 }
 
 
+.SearchInner1{
+    display: flex;
+    justify-content: left;
+    width: inherit;
+}
