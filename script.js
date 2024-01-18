@@ -449,3 +449,7 @@ function displaymintemp() {
 document.querySelector('#formAction').addEventListener('click', function() {
   document.body.style.zoom = "100%";
 });
+
+document.querySelector('#formAction').addEventListener('click', function() {
+  document.querySelector('#searchdata').blur();
+});
