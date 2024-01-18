@@ -48,6 +48,7 @@ a:focus {
     justify-content: right;
     border: 2px #00CAFD solid;
     border-radius: 5px;
+    gap:10px;
 
 
 }
@@ -199,14 +200,13 @@ a:focus {
     display: flex;
     justify-content:space-evenly;
     align-items: center;
-    gap: 20px; 
-    /* flex-wrap: wrap; */
- 
+    gap: 20px; */
+    flex-wrap: wrap;
+    
 }
 .Wboxmin {
     display: flex;
-    justify-content:space-between;
-    padding: 0px 50px;
+    justify-content:space-around;
 }
 
 .wbox2 {
@@ -321,7 +321,7 @@ input[type="search" i]:focus {
         /* Three columns for tablets */
     }
     .searchForm {
-        width: 28vh;      
+        width: 35vh;      
     }
     
     .searchForm1 {
@@ -336,7 +336,7 @@ input[type="search" i]:focus {
         /* Three columns for tablets */
     }
     .searchForm {
-        width: 28vh;      
+        width: 30vh;      
     }
     
     .searchForm1 {
@@ -350,7 +350,7 @@ input[type="search" i]:focus {
         /* Three columns for tablets */
     }
     .searchForm {
-        width: 24vh;      
+        width: 30vh;      
     }
     
     .searchForm1 {
@@ -363,7 +363,7 @@ input[type="search" i]:focus {
         /* Three columns for tablets */
     }
     .searchForm {
-        width: 24vh;      
+        width: 30vh;      
     }
     
     .searchForm1 {
@@ -396,3 +396,5 @@ input[type="search" i]:focus {
 .headcity h2{
     margin: none;
 }
+
+
