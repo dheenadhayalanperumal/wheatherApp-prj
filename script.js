@@ -446,10 +446,26 @@ function displaymintemp() {
   maxTemp = WeatherData.days[0].tempmin;
   max.innerText = maxTemp;
 }
-document.querySelector('#formAction').addEventListener('click', function() {
-  document.body.style.zoom = "100%";
-});
+// document.querySelector('#formAction').addEventListener('click', function() {
+//   document.body.style.zoom = "100%";
+// });
+
+// document.querySelector('#formAction').addEventListener('submit', function() {
+//   document.querySelector('#searchdata').blur();
+//   inputField.value = '';
+// });
+
 
 document.querySelector('#formAction').addEventListener('submit', function() {
-  document.querySelector('#searchdata').blur();
+  // Reset zoom
+  document.body.style.zoom = "100%";
+
+  // Get the input field
+  var inputField = document.querySelector('#searchdata');
+
+  // Hide keyboard
+  inputField.blur();
+
+  // Clear input field
+  inputField.value = '';
 });
