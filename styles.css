@@ -406,3 +406,12 @@ input[type="search" i]:focus {
     justify-content: left;
     width: inherit;
 }
+
+.alert {
+    padding: 20px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+  }

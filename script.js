@@ -9,12 +9,12 @@ function getlocation() {
         // Save the coordinates to localStorage
         saveCoordinatesToLocalStorage(latitude, longitude);
 
-        alert(
-          "Current Location - Latitude: " +
-            latitude +
-            ", Longitude: " +
-            longitude
-        );
+        // alert(
+        //   "Current Location - Latitude: " +
+        //     latitude +
+        //     ", Longitude: " +
+        //     longitude
+        // );
         getCityName(latitude, longitude);
         WeatherData = await getWeatherData(latitude, longitude);
         console.log(WeatherData);
