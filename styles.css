@@ -43,14 +43,14 @@ a:focus {
 
 .searchForm {
     width: inherit;
-    height: 59px;
+    height:  66px;
     display: flex;
     justify-content: right;
     border: 2px #00CAFD solid;
     border-radius: 5px;
     /* gap:10px; */
-    flex-wrap: wrap;
-    padding: opx 10px;
+    flex-wrap: nowrap;
+    padding: opx 0px;
 
 
 
